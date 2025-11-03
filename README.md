@@ -11,3 +11,15 @@ This is an open-source initiative to document, map, and promote outdoor rock cli
 - Encourage responsible, community-driven exploration
 
 ## 📁 Repository structure
+
+
+## 🧩 Contribute
+See [CONTRIBUTING.md](CONTRIBUTING.md) for details.  
+All skill levels welcome — climbers, mappers, coders, and designers!
+
+## 🌐 Live Map (coming soon)
+We plan to build a Leaflet-based map showing all crags.
+
+---
+
+**Maintainer:** [@Sashwat-Sashi](https://github.com/Sashwat-Sashi)
