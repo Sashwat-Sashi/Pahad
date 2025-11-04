@@ -1,6 +1,7 @@
 Open-source project to map and document outdoor rock climbing in India.
-# 🧗‍♂️ Kallah
+# 🧗‍♂️ Pahaad
 
+Website: https://sashwat-sashi.github.io/Pahad/
 **Bringing outdoor climbing to India — one crag at a time.**
 
 This is an open-source initiative to document, map, and promote outdoor rock climbing across India.
