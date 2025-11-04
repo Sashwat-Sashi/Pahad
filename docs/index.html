@@ -33,6 +33,10 @@
         <a href="mumbai_climbing_history.html">History of Climbing in Mumbai</a>
       </ul>
     </nav>
+    <div class="lang-toggle">
+  <button id="lang-btn">🇮🇳 हिंदी</button>
+</div>
+
   </header>
 
   <!-- Hero -->
@@ -119,5 +123,81 @@
         .bindPopup(`<b>${loc.name}</b>`);
     });
   </script>
+
+  <script>
+const translations = {
+  hi: {
+    "heroTitle": "मुंबई की क्लाइम्बिंग क्षमता की खोज करें",
+    "heroText": "महाराष्ट्र भर में रॉक क्लाइम्बिंग के भविष्य का मानचित्रण और प्रचार।",
+    "missionTitle": "हमारा मिशन",
+    "missionText": "कॉल एक खुला प्रोजेक्ट है जो भारत में क्लाइम्बर्स के लिए जागरूकता और पहुंच बढ़ाने के लिए समर्पित है। लोनावला की चट्टानों से ठाणे की दीवारों तक, हम उन लोगों को जोड़ते हैं जो प्रकृति से प्यार करते हैं।",
+    "outdoorTitle": "आउटडोर क्लाइम्बिंग",
+    "outdoorText": "महाराष्ट्र की प्राचीन बेसाल्ट चट्टानों से लेकर मुंबई के तटीय पत्थरों तक, आउटडोर क्लाइम्बिंग तेजी से बढ़ रही है। यहाँ रास्तों और समुदायों की खोज करें।",
+    "mapTitle": "क्लाइम्बिंग मैप",
+    "mapText": "महाराष्ट्र के कुछ बेहतरीन क्लाइम्बिंग स्थानों का अन्वेषण करें।",
+    "indoorTitle": "इनडोर क्लाइम्बिंग",
+    "indoorText": "इनडोर जिम वह जगह हैं जहाँ नए क्लाइम्बर्स शुरुआत करते हैं। हम मुंबई क्षेत्र में हर बौल्डरिंग और स्पोर्ट वॉल का ट्रैक रख रहे हैं।",
+    "resourcesTitle": "संसाधन",
+    "resourcesText": "सुरक्षा, नैतिकता और प्रशिक्षण की जानकारी खोजें। जल्द आ रहा है।",
+    "involvedTitle": "शामिल हों",
+    "involvedText": "यदि आप क्लाइम्बर, जिम मालिक, रूट डेवलपर या फ़ोटोग्राफ़र हैं, तो हम आपसे सुनना चाहेंगे।",
+    "contactBtn": "संपर्क करें"
+  },
+  en: {
+    "heroTitle": "Discover Mumbai's Climbing Potential",
+    "heroText": "Mapping, documenting, and promoting the future of rock climbing across Maharashtra.",
+    "missionTitle": "Our Mission",
+    "missionText": "Kall is an open project dedicated to building awareness and access for climbers in India. From the cliffs of Lonavala to the walls of Thane, we aim to connect people who love the outdoors.",
+    "outdoorTitle": "Outdoor Climbing",
+    "outdoorText": "From Maharashtra’s basalt cliffs to Mumbai’s coastal rocks, outdoor climbing is growing fast.",
+    "mapTitle": "Climbing Map",
+    "mapText": "Explore some of Maharashtra’s best climbing spots.",
+    "indoorTitle": "Indoor Climbing",
+    "indoorText": "Indoor gyms are where new climbers begin. We're tracking every bouldering and sport wall in Mumbai.",
+    "resourcesTitle": "Resources",
+    "resourcesText": "Find information about safety, ethics, and training. Coming soon.",
+    "involvedTitle": "Get Involved",
+    "involvedText": "If you’re a climber, gym owner, route developer, or photographer, we’d love to hear from you.",
+    "contactBtn": "Contact Us"
+  }
+};
+
+let currentLang = localStorage.getItem("lang") || "en";
+const langBtn = document.getElementById("lang-btn");
+
+function applyLanguage(lang) {
+  document.querySelector("#home h1").textContent = translations[lang].heroTitle;
+  document.querySelector("#home p").textContent = translations[lang].heroText;
+
+  document.querySelector("#about h2").textContent = translations[lang].missionTitle;
+  document.querySelector("#about p").textContent = translations[lang].missionText;
+
+  document.querySelector("#outdoor h2").textContent = translations[lang].outdoorTitle;
+  document.querySelector("#outdoor p").textContent = translations[lang].outdoorText;
+
+  document.querySelector("#map h2").textContent = translations[lang].mapTitle;
+  document.querySelector("#map p").textContent = translations[lang].mapText;
+
+  document.querySelector("#indoor h2").textContent = translations[lang].indoorTitle;
+  document.querySelector("#indoor p").textContent = translations[lang].indoorText;
+
+  document.querySelector("#resources h2").textContent = translations[lang].resourcesTitle;
+  document.querySelector("#resources p").textContent = translations[lang].resourcesText;
+
+  document.querySelector("#involved h2").textContent = translations[lang].involvedTitle;
+  document.querySelector("#involved p").textContent = translations[lang].involvedText;
+  document.querySelector("#involved a").textContent = translations[lang].contactBtn;
+}
+
+applyLanguage(currentLang);
+
+langBtn.addEventListener("click", () => {
+  currentLang = currentLang === "en" ? "hi" : "en";
+  localStorage.setItem("lang", currentLang);
+  applyLanguage(currentLang);
+  langBtn.textContent = currentLang === "en" ? "🇮🇳 हिंदी" : "🇬🇧 English";
+});
+</script>
+
 </body>
 </html>
