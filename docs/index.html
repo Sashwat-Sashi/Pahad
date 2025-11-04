@@ -4,21 +4,28 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kall — Climbing Maharashtra</title>
-  <link rel="stylesheet" href="style.css" />
+
+  <!-- Leaflet for map -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <!-- Google Fonts + Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/a2e0e6e7a9.js" crossorigin="anonymous"></script>
-</head>
 
+  <link rel="stylesheet" href="style.css" />
+</head>
 <body>
   <header>
-    <div class="logo">Kall<span>.</span></div>
+    <div class="logo">Kall</div>
     <nav>
-      <ul class="nav-links">
+      <ul>
         <li><a href="#home">Home</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#outdoor">Outdoor</a></li>
         <li><a href="#indoor">Indoor</a></li>
         <li><a href="#resources">Resources</a></li>
+        <li><a href="#map">Map</a></li>
         <li><a href="#involved">Get Involved</a></li>
         <li><a href="https://instagram.com" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a></li>
         <li><a href="https://reddit.com" target="_blank" title="Reddit"><i class="fab fa-reddit"></i></a></li>
@@ -27,59 +34,89 @@
     </nav>
   </header>
 
+  <!-- Hero -->
   <section id="home" class="hero">
-    <div class="overlay"></div>
-    <div class="hero-content">
-      <h1>Discovering Mumbai’s Climbing Potential</h1>
-      <p>Exploring Maharashtra’s crags, gyms, and climbing community.</p>
-      <a href="#involved" class="cta-btn">Join the Movement</a>
+    <div class="hero-text">
+      <h1>Discover Mumbai's Climbing Potential</h1>
+      <p>Mapping, documenting, and promoting the future of rock climbing across Maharashtra.</p>
     </div>
   </section>
 
-  <section id="about" class="section">
+  <!-- About / Mission -->
+  <section id="about" class="section fade-in">
     <h2>Our Mission</h2>
-    <p>
-      Kall (meaning “stone” in Marathi) aims to document and promote outdoor and indoor climbing 
-      across Mumbai and Maharashtra. From local basalt crags to emerging gyms, we’re building 
-      an open, community-driven climbing resource.
-    </p>
+    <p>Kall is an open project dedicated to building awareness and access for climbers in India. Starting from the cliffs of Lonavala to the walls of Thane, we aim to connect people who love the outdoors and believe in sustainable climbing development.</p>
   </section>
 
-  <section id="outdoor" class="section alt-bg">
+  <!-- Outdoor Climbing -->
+  <section id="outdoor" class="section fade-in">
     <h2>Outdoor Climbing</h2>
-    <p>
-      Explore Maharashtra’s best crags — Duke’s Nose, Kanheri, Mumbra, Manori, and more.  
-      We’re curating topos, access info, and safety notes to help climbers explore responsibly.
-    </p>
+    <p>From the ancient basalt cliffs of Maharashtra to the coastal rocks near Mumbai, outdoor climbing is growing fast. Explore documented crags, routes, and local communities here.</p>
   </section>
 
-  <section id="indoor" class="section">
+  <!-- Map -->
+  <section id="map" class="section fade-in">
+    <h2>Climbing Map</h2>
+    <p>Explore some of Maharashtra’s best climbing spots.</p>
+    <div id="climb-map"></div>
+  </section>
+
+  <!-- Indoor Climbing -->
+  <section id="indoor" class="section fade-in">
     <h2>Indoor Climbing</h2>
-    <p>
-      Track climbing gyms and training centers around Mumbai.  
-      We support grassroots gyms that introduce new climbers to the sport.
-    </p>
+    <p>Indoor gyms are where new climbers begin. We're tracking every bouldering and sport wall in the Mumbai area—join us to grow the scene.</p>
   </section>
 
-  <section id="resources" class="section alt-bg">
+  <!-- Resources -->
+  <section id="resources" class="section fade-in">
     <h2>Resources</h2>
-    <p>
-      Coming soon — training guides, gear rental spots, and route databases.
-    </p>
+    <p>Find information about safety, ethics, and training. Coming soon.</p>
   </section>
 
-  <section id="involved" class="section">
+  <!-- Get Involved -->
+  <section id="involved" class="section fade-in">
     <h2>Get Involved</h2>
-    <p>
-      Whether you’re a climber, gym owner, or photographer — help us build a climbing community in Maharashtra.  
-      Share crag data, photos, or beta by reaching out on 
-      <a href="https://instagram.com" target="_blank">Instagram</a> or 
-      <a href="https://reddit.com" target="_blank">Reddit</a>.
-    </p>
+    <p>If you’re a climber, gym owner, route developer, or photographer, we’d love to hear from you. Follow Kall on social media or reach out to collaborate.</p>
+    <a class="button" href="mailto:ai.doc.toral.app@gmail.com">Contact Us</a>
   </section>
 
   <footer>
-    <p>© 2025 Kall — Climbing Maharashtra. Built with ❤️ in Mumbai.</p>
+    <p>© 2025 Kall Project | Built with ❤️ in Maharashtra</p>
   </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Fade-in animations
+    const faders = document.querySelectorAll('.fade-in');
+    const appearOptions = { threshold: 0.15 };
+    const appearOnScroll = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('appear');
+        observer.unobserve(entry.target);
+      });
+    }, appearOptions);
+    faders.forEach(fader => appearOnScroll.observe(fader));
+
+    // Leaflet Map
+    const map = L.map('climb-map').setView([19.1, 73.0], 8);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    const locations = [
+      { name: "Duke’s Nose (Lonavala)", coords: [18.776, 73.373] },
+      { name: "Kanheri Caves (Borivali)", coords: [19.214, 72.912] },
+      { name: "Mumbra Hills (Thane)", coords: [19.166, 73.05] },
+      { name: "Manori Rocks (Malad West)", coords: [19.216, 72.783] },
+      { name: "Karnala Fort (Panvel)", coords: [18.88, 73.12] }
+    ];
+
+    locations.forEach(loc => {
+      L.marker(loc.coords)
+        .addTo(map)
+        .bindPopup(`<b>${loc.name}</b>`);
+    });
+  </script>
 </body>
 </html>
